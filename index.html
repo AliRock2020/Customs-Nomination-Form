@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة التقدم لمسابقة الندب - مصلحة الجمارك</title>
+
+    <style>
+        body {
+            font-family: "Cairo", sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0b3a6f;
+        }
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #c7c7c7;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        textarea { height: 90px; }
+
+        .section-title {
+            margin-top: 30px;
+            font-size: 18px;
+            padding: 12px;
+            background: #0b3a6f;
+            color: white;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 14px;
+            background: #0b3a6f;
+            color: white;
+            border: none;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .add-btn {
+            background: #145ea8;
+            margin-top: 10px;
+        }
+
+        .course-item {
+            padding: 15px;
+            background: #f7f9fc;
+            border: 1px solid #dce3ec;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>استمارة التقدم لمسابقة الندب - مصلحة الجمارك</h1>
+
+        <form id="customForm">
+
+            <div class="section-title">البيانات الأساسية</div>
+
+            <label>الاسم بالكامل</label>
+            <input type="text" id="name" required>
+
+            <label>تاريخ الميلاد</label>
+            <input type="date" id="birthdate" required>
+
+            <label>المؤهل والتقدير العام</label>
+            <input type="text" id="degree" required>
+
+            <label>تاريخ التعيين</label>
+            <input type="date" id="appointDate" required>
+
+            <label>المجموعة النوعية</label>
+            <input type="text" id="groupType" required>
+
+            <label>الجزاءات</label>
+            <textarea id="penalties"></textarea>
+
+            <label>الإحالة للمحاكمة</label>
+            <textarea id="courtCases"></textarea>
+
+            <label>تقارير الأداء آخر عامين</label>
+            <input type="text" id="performance">
+
+            <label>الإجازات</label>
+            <textarea id="vacations"></textarea>
+
+            <label>العلاوة التشجيعية</label>
+            <input type="text" id="incentive">
+
+            <label>هل من نسبة 5%؟</label>
+            <select id="disability">
+                <option value="لا">لا</option>
+                <option value="نعم">نعم</option>
+            </select>
+
+            <div class="section-title">الدورات التدريبية</div>
+            <div id="courses"></div>
+
+            <button type="button" class="add-btn" onclick="addCourse()">إضافة دورة أخرى</button>
+
+            <div class="section-title">المرفقات</div>
+
+            <label>صورة البطاقة</label>
+            <input type="file" id="file1" accept="image/*,.pdf" required>
+
+            <label>شهادة الميلاد</label>
+            <input type="file" id="file2" accept="image/*,.pdf" required>
+
+            <label>السيرة الذاتية (PDF)</label>
+            <input type="file" id="file3" accept="application/pdf" required>
+
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+
+<script>
+    const API_URL = "YOUR_SCRIPT_URL_HERE"; // ← ضع رابط Google Script هنا
+
+    function addCourse() {
+        const c = document.getElementById("courses");
+        const div = document.createElement("div");
+        div.className = "course-item";
+
+        div.innerHTML = `
+            <label>اسم الدورة</label>
+            <input type="text" class="course-name" required>
+
+            <label>الجهة المقدمة</label>
+            <input type="text" class="course-org" required>
+
+            <label>تاريخ الدورة</label>
+            <input type="date" class="course-date" required>
+
+            <label>المدة</label>
+            <input type="text" class="course-duration">
+        `;
+
+        c.appendChild(div);
+    }
+
+    document.getElementById("customForm").addEventListener("submit", async function(e){
+        e.preventDefault();
+
+        // Collect courses
+        let courseNames = [...document.querySelectorAll(".course-name")].map(el => el.value);
+        let courseOrgs  = [...document.querySelectorAll(".course-org")].map(el => el.value);
+        let courseDates = [...document.querySelectorAll(".course-date")].map(el => el.value);
+        let courseDur   = [...document.querySelectorAll(".course-duration")].map(el => el.value);
+
+        let courses = [];
+        for (let i = 0; i < courseNames.length; i++) {
+            courses.push({
+                name: courseNames[i],
+                org: courseOrgs[i],
+                date: courseDates[i],
+                duration: courseDur[i]
+            });
+        }
+
+        // Convert files to Base64
+        async function fileToBase64(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve({
+                    name: file.name,
+                    type: file.type,
+                    data: reader.result.split(",")[1]
+                });
+                reader.readAsDataURL(file);
+            });
+        }
+
+        const files = [];
+        for (const id of ["file1","file2","file3"]) {
+            files.push(await fileToBase64(document.getElementById(id).files[0]));
+        }
+
+        // Build payload
+        const payload = {
+            name: document.getElementById("name").value,
+            birthdate: document.getElementById("birthdate").value,
+            degree: document.getElementById("degree").value,
+            appointDate: document.getElementById("appointDate").value,
+            groupType: document.getElementById("groupType").value,
+            penalties: document.getElementById("penalties").value,
+            courtCases: document.getElementById("courtCases").value,
+            performance: document.getElementById("performance").value,
+            vacations: document.getElementById("vacations").value,
+            incentive: document.getElementById("incentive").value,
+            disability: document.getElementById("disability").value,
+            courses: courses,
+            files: files
+        };
+
+        // Send to Google Script
+        const res = await fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: {"Content-Type": "application/json"}
+        });
+
+        alert("تم إرسال البيانات بنجاح");
+    });
+</script>
+
+</body>
+</html>
