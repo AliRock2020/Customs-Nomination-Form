@@ -2,233 +2,143 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>استمارة التقدم لمسابقة الندب - مصلحة الجمارك</title>
+    <title>إستمارة التقدم لمسابقة الندب</title>
 
     <style>
         body {
-            font-family: "Cairo", sans-serif;
-            background: #eef2f7;
             margin: 0;
-            padding: 0;
+            font-family: "Tahoma", Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #000;
         }
+
+        /* صورة الهيدر */
+        .header-image {
+            width: 100%;
+            height: 260px;
+            background: #ccc;
+            background-size: cover;
+            background-position: center;
+        }
+
         .container {
-            width: 90%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 30px auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
         }
-        h1 {
+
+        h1, h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #0b3a6f;
         }
-        label {
-            display: block;
-            margin: 12px 0 6px;
-            font-weight: bold;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #c7c7c7;
-            border-radius: 8px;
-            font-size: 15px;
-        }
-        textarea { height: 90px; }
 
-        .section-title {
+        ul {
+            line-height: 2;
+        }
+
+        .declaration {
             margin-top: 30px;
-            font-size: 18px;
-            padding: 12px;
-            background: #0b3a6f;
-            color: white;
-            border-radius: 10px;
-        }
-
-        button {
-            margin-top: 25px;
-            width: 100%;
-            padding: 14px;
-            background: #0b3a6f;
-            color: white;
-            border: none;
-            font-size: 18px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .add-btn {
-            background: #145ea8;
-            margin-top: 10px;
-        }
-
-        .course-item {
             padding: 15px;
-            background: #f7f9fc;
-            border: 1px solid #dce3ec;
-            border-radius: 10px;
-            margin-top: 10px;
+            border: 1px solid #999;
+            background: #f9f9f9;
         }
+
+        .actions {
+            display: none;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            background-color: #003366;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .actions a:hover {
+            background-color: #0055aa;
+        }
+
+        .note {
+            margin-top: 25px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>استمارة التقدم لمسابقة الندب - مصلحة الجمارك</h1>
 
-        <form id="customForm">
-
-            <div class="section-title">البيانات الأساسية</div>
-
-            <label>الاسم بالكامل</label>
-            <input type="text" id="name" required>
-
-            <label>تاريخ الميلاد</label>
-            <input type="date" id="birthdate" required>
-
-            <label>المؤهل والتقدير العام</label>
-            <input type="text" id="degree" required>
-
-            <label>تاريخ التعيين</label>
-            <input type="date" id="appointDate" required>
-
-            <label>المجموعة النوعية</label>
-            <input type="text" id="groupType" required>
-
-            <label>الجزاءات</label>
-            <textarea id="penalties"></textarea>
-
-            <label>الإحالة للمحاكمة</label>
-            <textarea id="courtCases"></textarea>
-
-            <label>تقارير الأداء آخر عامين</label>
-            <input type="text" id="performance">
-
-            <label>الإجازات</label>
-            <textarea id="vacations"></textarea>
-
-            <label>العلاوة التشجيعية</label>
-            <input type="text" id="incentive">
-
-            <label>هل من نسبة 5%؟</label>
-            <select id="disability">
-                <option value="لا">لا</option>
-                <option value="نعم">نعم</option>
-            </select>
-
-            <div class="section-title">الدورات التدريبية</div>
-            <div id="courses"></div>
-
-            <button type="button" class="add-btn" onclick="addCourse()">إضافة دورة أخرى</button>
-
-            <div class="section-title">المرفقات</div>
-
-            <label>صورة البطاقة</label>
-            <input type="file" id="file1" accept="image/*,.pdf" required>
-
-            <label>شهادة الميلاد</label>
-            <input type="file" id="file2" accept="image/*,.pdf" required>
-
-            <label>السيرة الذاتية (PDF)</label>
-            <input type="file" id="file3" accept="application/pdf" required>
-
-            <button type="submit">إرسال</button>
-        </form>
+    <!-- صورة الهيدر -->
+    <div class="header-image">
+        <!-- هتحط الصورة هنا -->
     </div>
 
-<script>
-    const API_URL = "YOUR_SCRIPT_URL_HERE"; // ← ضع رابط Google Script هنا
+    <div class="container">
 
-    function addCourse() {
-        const c = document.getElementById("courses");
-        const div = document.createElement("div");
-        div.className = "course-item";
+        <h1>إستمارة التقديم على إعلان وظائف مسابقة الندب رقم ١ لعام ٢٠٢٦</h1>
 
-        div.innerHTML = `
-            <label>اسم الدورة</label>
-            <input type="text" class="course-name" required>
+        <h2>الشروط العامة للتقديم</h2>
+        <ul>
+            <li>استيفاء موافقة جهة العمل من السلطة المختصة.</li>
+            <li>تقديم بيان حالة وظيفية حديث ومعتمد ومختوم بخاتم شعار الجمهورية.</li>
+            <li>تقارير تقويم الأداء عن آخر عامين بمرتبة ممتاز.</li>
+            <li>عدم الإحالة لمحاكمة جنائية أو تأديبية (إن وجد).</li>
+        </ul>
 
-            <label>الجهة المقدمة</label>
-            <input type="text" class="course-org" required>
+        <h2>المستندات المطلوبة</h2>
+        <ul>
+            <li>صورة طبق الأصل من المؤهل الدراسي معتمدة.</li>
+            <li>صورة بطاقة الرقم القومي مدون عليها رقم الهاتف.</li>
+            <li>عدد (٤) صور شخصية مقاس ٤×٦ خلفية بيضاء.</li>
+            <li>صحيفة حالة جنائية حديثة موجهة لمصلحة الجمارك المصرية.</li>
+        </ul>
 
-            <label>تاريخ الدورة</label>
-            <input type="date" class="course-date" required>
+        <div class="declaration">
+            <label>
+                <input type="checkbox" id="agreeCheckbox">
+                أقر بأنني قد قرأت جميع الشروط والمستندات المطلوبة، وأتحمل كامل المسئولية عن صحة البيانات.
+            </label>
+        </div>
 
-            <label>المدة</label>
-            <input type="text" class="course-duration">
-        `;
+        <div class="actions" id="actions">
+            <a href="استمارة_التقدم_لمسابقة_الندب.pdf" download>
+                ⬇️ تحميل نموذج الاستمارة
+            </a>
 
-        c.appendChild(div);
-    }
+            <a href="register.html">
+                ➡️ الانتقال إلى تسجيل البيانات
+            </a>
+        </div>
 
-    document.getElementById("customForm").addEventListener("submit", async function(e){
-        e.preventDefault();
+        <div class="note">
+            <strong>ملحوظة هامة:</strong><br>
+            يتم تحميل جميع المرفقات المطلوبة، بما في ذلك نموذج استمارة التقدم لمسابقة الندب بعد ملئه يدويًا
+            والتوقيع عليه، وإرسالها بإحدى الطريقتين:
+            <br><br>
+            📧 البريد الإلكتروني: Recruitment@customs.gov.eg<br>
+            🏢 التسليم باليد:
+            <ul>
+                <li>القاهرة – الحي الحكومي بالعاصمة الإدارية الجديدة – مبنى مصلحة الجمارك المصرية – الدور السادس</li>
+                <li>الإسكندرية – ميناء الإسكندرية – بوابة ١٠ – مبنى A٣ – الدور السادس</li>
+            </ul>
+        </div>
 
-        // Collect courses
-        let courseNames = [...document.querySelectorAll(".course-name")].map(el => el.value);
-        let courseOrgs  = [...document.querySelectorAll(".course-org")].map(el => el.value);
-        let courseDates = [...document.querySelectorAll(".course-date")].map(el => el.value);
-        let courseDur   = [...document.querySelectorAll(".course-duration")].map(el => el.value);
+    </div>
 
-        let courses = [];
-        for (let i = 0; i < courseNames.length; i++) {
-            courses.push({
-                name: courseNames[i],
-                org: courseOrgs[i],
-                date: courseDates[i],
-                duration: courseDur[i]
-            });
-        }
-
-        // Convert files to Base64
-        async function fileToBase64(file) {
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve({
-                    name: file.name,
-                    type: file.type,
-                    data: reader.result.split(",")[1]
-                });
-                reader.readAsDataURL(file);
-            });
-        }
-
-        const files = [];
-        for (const id of ["file1","file2","file3"]) {
-            files.push(await fileToBase64(document.getElementById(id).files[0]));
-        }
-
-        // Build payload
-        const payload = {
-            name: document.getElementById("name").value,
-            birthdate: document.getElementById("birthdate").value,
-            degree: document.getElementById("degree").value,
-            appointDate: document.getElementById("appointDate").value,
-            groupType: document.getElementById("groupType").value,
-            penalties: document.getElementById("penalties").value,
-            courtCases: document.getElementById("courtCases").value,
-            performance: document.getElementById("performance").value,
-            vacations: document.getElementById("vacations").value,
-            incentive: document.getElementById("incentive").value,
-            disability: document.getElementById("disability").value,
-            courses: courses,
-            files: files
-        };
-
-        // Send to Google Script
-        const res = await fetch(API_URL, {
-            method: "POST",
-            body: JSON.stringify(payload),
-            headers: {"Content-Type": "application/json"}
+    <script>
+        document.getElementById("agreeCheckbox").addEventListener("change", function () {
+            document.getElementById("actions").style.display = this.checked ? "block" : "none";
         });
-
-        alert("تم إرسال البيانات بنجاح");
-    });
-</script>
+    </script>
 
 </body>
 </html>
