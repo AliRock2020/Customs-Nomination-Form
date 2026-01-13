@@ -142,7 +142,7 @@ document.querySelectorAll("input").forEach(input => {
     </div>
 
     <!-- ===== Form ===== -->
-    <form id="applicationForm">
+    <form id="applicationForm" onsubmit="submitForm(event)">
 
         <h2>البيانات الشخصية</h2>
 
@@ -249,6 +249,54 @@ document.querySelectorAll("input").forEach(input => {
         `;
         document.getElementById("courses").appendChild(div);
     }
+</script>
+<script>
+function submitForm(e) {
+    e.preventDefault();
+
+    const courses = [];
+    document.querySelectorAll(".course").forEach(course => {
+        const inputs = course.querySelectorAll("input");
+        courses.push({
+            name: inputs[0]?.value || "",
+            place: inputs[1]?.value || "",
+            duration: inputs[2]?.value || "",
+            date: inputs[3]?.value || ""
+        });
+    });
+
+    const data = {
+        nationalId: document.querySelectorAll('input')[0].value,
+        fullName: document.querySelectorAll('input')[1].value,
+        birthDate: document.querySelectorAll('input[type="date"]')[0].value,
+        gender: document.querySelector('select').value,
+        workPlace: document.querySelectorAll('input')[2].value,
+        currentJob: document.querySelectorAll('input')[3].value,
+        hireDate: document.querySelectorAll('input[type="date"]')[1].value,
+        level: document.querySelectorAll('input')[4].value,
+        appliedJob: document.querySelectorAll('input')[5].value,
+        courses: courses
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzl2me1ttm9ceIJp_XDDSz8eLJJ2788rlWn7VBtHnamqm_fztCDuJVpcdGQs-0YUQLw/exec", {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => {
+        if (result === "EXISTS") {
+            alert("⚠️ هذا الرقم القومي مسجل بالفعل");
+        } else {
+            alert("✅ تم تسجيل البيانات بنجاح");
+            document.getElementById("applicationForm").reset();
+            document.getElementById("courses").innerHTML = "";
+        }
+    })
+    .catch(error => {
+        alert("❌ حدث خطأ أثناء الإرسال");
+        console.error(error);
+    });
+}
 </script>
 
 </body>
