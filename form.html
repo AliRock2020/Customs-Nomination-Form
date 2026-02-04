@@ -103,15 +103,16 @@ button{
   <input id="nationalId" placeholder="الرقم القومي" maxlength="14" required>
 </div>
 <div class="form-row">
-    <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
-  <input id="birthDate" placeholder="تاريخ الميلاد" type="date" required>
-</div>
-<div class="form-row">
+  <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
+  <label>تاريخ الميلاد</label><input id="birthDate" type="date" required>
   <select id="gender" required>
     <option value="">النوع</option>
     <option>ذكر</option>
     <option>أنثى</option>
   </select>
+</div>
+<div class="form-row">
+       <input id="adress" placeholder="العنوان" required>
   </div>
 </div>
   
@@ -132,7 +133,7 @@ button{
 <div class="form-row">
     <input id="workPlace" placeholder="جهة العمل" required>
     <input id="level" placeholder="المستوى الوظيفي" required>
-  <input id="hireDate" placeholder="تاريخ التعيين" type="date" required>
+    <label>تاريخ التعيين</label><input id="hireDate" type="date" required>
 </div>
 <div class="form-row">
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
