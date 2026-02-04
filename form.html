@@ -97,14 +97,14 @@ button{
 <h2>استمارة تسجيل البيانات</h2>
 
 <form id="dataForm">
-<div class="form-row">
+<div class="personalData">
   <h3>البيانات الشخصية</h3>
-  </div>
 <div class="form-row">
   <input id="nationalId" placeholder="الرقم القومي" maxlength="14" required>
   <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
 </div>
-
+  </div>
+  
 <div class="form-row">
   <input id="fullName" placeholder="الاسم بالكامل" required>
   <input id="birthDate" type="date" required>
@@ -118,15 +118,16 @@ button{
   </select>
 
 </div>
-<div class="form-row">
+<div class="studyData">
   <h3>البيانات الجامعية</h3>
-  </div>
+
 <div class="form-row">
     <input id="workPlace" placeholder="جهة العمل" required>
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
   <input id="hireDate" type="date" required>
 </div>
-
+  </div>
+  
 <div class="form-row">
   <input id="university" placeholder="الجامعة" required>
   <input id="college" placeholder="الكلية" required>
@@ -136,11 +137,13 @@ button{
   <input id="qualification" placeholder="المؤهل الجامعي" required>
   <input id="grade" placeholder="التقدير العام" required>
 </div>
-
+<div class="jobData">
+  <h3>البيانات الوظيفية</h3>
 <div class="form-row">
   <input id="level" placeholder="المستوى الوظيفي" required>
   <input id="appliedJob" placeholder="الوظيفة المتقدم لها" required>
 </div>
+  </div>
 
 <div class="courses">
 <h3>الدورات التدريبية</h3>
