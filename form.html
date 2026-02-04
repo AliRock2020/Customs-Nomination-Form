@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>تسجيل بيانات المتقدم</title>
+<title>تسجيل بيانات المتقدم لمسابقة الندب لمصلحة الجمارك المصرية</title>
 
 <style>
 body{
@@ -97,7 +97,9 @@ button{
 <h2>استمارة تسجيل البيانات</h2>
 
 <form id="dataForm">
-
+<div class="form-row">
+  <h3>البيانات الشخصية</h3>
+  </div>
 <div class="form-row">
   <input id="nationalId" placeholder="الرقم القومي" maxlength="14" required>
   <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
@@ -114,10 +116,13 @@ button{
     <option>ذكر</option>
     <option>أنثى</option>
   </select>
-  <input id="workPlace" placeholder="جهة العمل" required>
-</div>
 
+</div>
 <div class="form-row">
+  <h3>البيانات الجامعية</h3>
+  </div>
+<div class="form-row">
+    <input id="workPlace" placeholder="جهة العمل" required>
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
   <input id="hireDate" type="date" required>
 </div>
