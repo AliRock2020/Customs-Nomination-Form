@@ -22,8 +22,10 @@ body{
 
 .logos{
   display:flex;
-  justify-content:space-between;
-  margin-bottom:25px;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
 .logos img{
@@ -144,14 +146,16 @@ h2{
     flex-direction:column;
   }
 
-  .logos{
-    flex-direction:column;
-    align-items:center;
-    gap:15px;
+    .logos{
+    flex-direction:row;
+    flex-wrap:nowrap;
+    gap:10px;
   }
 
   .logos img{
-    height:90px;
+    height:70px;
+    max-width:45%;
+    object-fit:contain;
   }
 
   .form-title{
