@@ -104,7 +104,12 @@ button{
 </div>
 <div class="form-row">
   <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
-  <input id="birthDate" type="date"<label>تاريخ الميلاد</label> required>
+  <input
+      type="text"
+      id="birthDate"
+      placeholder="تاريخ الميلاد"
+      onfocus="this.type='date'"
+      onblur="if(!this.value)this.type='text'">
   <select id="gender" required>
     <option value="">النوع</option>
     <option>ذكر</option>
@@ -133,7 +138,12 @@ button{
 <div class="form-row">
     <input id="workPlace" placeholder="جهة العمل" required>
     <input id="level" placeholder="المستوى الوظيفي" required>
-    <label>تاريخ التعيين</label><input id="hireDate" type="date" required>
+    <input
+        type="text"
+        id="hireDate"
+        placeholder="تاريخ التعيين"
+        onfocus="this.type='date'"
+        onblur="if(!this.value)this.type='text'">
 </div>
 <div class="form-row">
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
