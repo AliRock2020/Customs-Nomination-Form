@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta charset="UTF-8">
 <title>تسجيل بيانات المتقدم</title>
 
@@ -13,9 +16,8 @@ body{
 
 .container{
   max-width:1100px;
-  margin:30px auto;
-  background:#fff;
-  padding:30px;
+  width:95%;
+  margin:20px auto;
 }
 
 .logos{
@@ -120,6 +122,41 @@ h2{
   background:#0066cc;
   margin:10px auto 0;
 }
+
+@media (max-width: 768px){
+
+  .form-row{
+    flex-direction:column;
+  }
+
+  .course-line{
+    flex-direction:column;
+  }
+
+  .logos{
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+  }
+
+  .logos img{
+    height:90px;
+  }
+
+  .form-title{
+    font-size:20px;
+    margin-bottom:20px;
+  }
+
+  h2{
+    font-size:18px;
+  }
+
+  .submit-btn{
+    font-size:15px;
+  }
+}
+
 </style>
 </head>
 
