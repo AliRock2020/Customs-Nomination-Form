@@ -52,16 +52,44 @@ h2{
   padding:10px;
 }
 
-.courses{
-  border:1px solid #ccc;
+.course-row{
+  border:1px solid #ddd;
   padding:15px;
-  margin-top:20px;
+  margin-bottom:15px;
+  background:#fafafa;
 }
 
-.course-row{
+.course-header{
   display:flex;
-  gap:10px;
+  justify-content:space-between;
+  align-items:center;
   margin-bottom:10px;
+}
+
+.remove-course{
+  background:#e74c3c;
+  color:#fff;
+  border:none;
+  padding:5px 10px;
+  font-size:13px;
+  cursor:pointer;
+  border-radius:3px;
+}
+
+.remove-course:hover{
+  opacity:0.8;
+}
+
+.course-line{
+  display:flex;
+  gap:15px;
+  margin-bottom:10px;
+}
+
+.course-line input{
+  flex:1;
+  padding:12px;
+  font-size:14px;
 }
 
 button{
@@ -170,22 +198,30 @@ button{
 </div>
 
 <script>
-const scriptURL = "PUT_WEB_APP_URL_HERE";
 
 function addCourse(){
   const div = document.createElement("div");
-  div.className="course-row";
-  div.innerHTML=`
-    <input placeholder="اسم الدورة">
-    <input placeholder="مكان الدورة">
-    <input placeholder="المدة">
-    <input type="date">
+  div.className = "course-row";
+
+  div.innerHTML = `
+    <div class="course-header">
+      <strong>دورة تدريبية</strong>
+      <button type="button" class="remove-course" onclick="this.closest('.course-row').remove()">✖ حذف</button>
+    </div>
+
+    <div class="course-line">
+      <input placeholder="اسم الدورة">
+      <input placeholder="مكان الدورة">
+    </div>
+
+    <div class="course-line">
+      <input placeholder="المدة">
+      <input type="date">
+    </div>
   `;
+
   document.getElementById("coursesContainer").appendChild(div);
 }
-
-document.getElementById("dataForm").addEventListener("submit", e=>{
-  e.preventDefault();
 
   const mobile = document.getElementById("mobile").value;
   if(!/^\d{11}$/.test(mobile)){
