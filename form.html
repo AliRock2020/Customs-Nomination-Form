@@ -2,35 +2,36 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>تسجيل بيانات المتقدم </title>
+<title>تسجيل بيانات المتقدم</title>
 
 <style>
 body{
-  font-family: Tahoma, Arial;
-  background:#f5f5f5;
   margin:0;
+  font-family:Tahoma, Arial;
+  background:#f4f6f8;
 }
 
 .container{
-  max-width:1000px;
-  margin:auto;
+  max-width:1100px;
+  margin:30px auto;
   background:#fff;
-  padding:25px;
+  padding:30px;
 }
 
 .logos{
   display:flex;
   justify-content:space-between;
-  margin-bottom:20px;
+  margin-bottom:25px;
 }
 
 .logos img{
-  height:70px;
+  height:110px;
 }
 
 h2{
-  text-align:center;
-  margin-bottom:25px;
+  background:#eee;
+  padding:10px;
+  margin-top:30px;
 }
 
 .form-row{
@@ -42,18 +43,18 @@ h2{
 .form-row input,
 .form-row select{
   flex:1;
-  padding:10px;
+  padding:12px;
   font-size:14px;
 }
 
 .full-width{
   width:100%;
+  padding:12px;
   margin-bottom:15px;
-  padding:10px;
 }
 
 .course-row{
-  border:1px solid #ddd;
+  border:1px solid #ccc;
   padding:15px;
   margin-bottom:15px;
   background:#fafafa;
@@ -62,22 +63,7 @@ h2{
 .course-header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   margin-bottom:10px;
-}
-
-.remove-course{
-  background:#e74c3c;
-  color:#fff;
-  border:none;
-  padding:5px 10px;
-  font-size:13px;
-  cursor:pointer;
-  border-radius:3px;
-}
-
-.remove-course:hover{
-  opacity:0.8;
 }
 
 .course-line{
@@ -89,36 +75,38 @@ h2{
 .course-line input{
   flex:1;
   padding:12px;
-  font-size:14px;
 }
 
-button{
-  padding:12px 20px;
-  font-size:15px;
+.remove-course{
+  background:#c0392b;
+  color:#fff;
+  border:none;
+  padding:5px 10px;
   cursor:pointer;
 }
 
 .add-course{
   background:#eee;
   border:1px dashed #999;
+  padding:10px;
+  cursor:pointer;
 }
 
 .submit-btn{
+  margin-top:20px;
+  width:100%;
+  padding:15px;
   background:#0066cc;
   color:#fff;
   border:none;
-  width:100%;
-  margin-top:20px;
+  font-size:16px;
 }
-  <script>
-function addCourse(){
-  ...
+
+.hidden{
+  display:none;
 }
-</script>
-  
 </style>
 </head>
-  
 
 <body>
 
@@ -128,159 +116,145 @@ function addCourse(){
   <img src="logo-right.png">
   <img src="logo-left.png">
 </div>
-<h2>إستمارة تسجيل البيانات لمسابقة الندب لمصلحة الجمارك المصرية</h2>
 
 <form id="dataForm">
-<div class="personalData">
-  <h3>البيانات الشخصية</h3>
+
+<h2>البيانات الشخصية</h2>
+
 <div class="form-row">
   <input id="fullName" placeholder="الاسم بالكامل" required>
   <input id="nationalId" placeholder="الرقم القومي" maxlength="14" required>
 </div>
+
 <div class="form-row">
   <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
-  <input
-      type="text"
-      id="birthDate"
-      placeholder="تاريخ الميلاد"
-      onfocus="this.type='date'"
-      onblur="if(!this.value)this.type='text'">
+  <input type="text" id="birthDate" placeholder="تاريخ الميلاد"
+   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
   <select id="gender" required>
     <option value="">النوع</option>
     <option>ذكر</option>
     <option>أنثى</option>
   </select>
 </div>
-<div class="form-row">
-       <input id="adress" placeholder="العنوان" required>
-  </div>
-</div>
-  
-<div class="studyData">
-  <h3>البيانات الجامعية</h3>
+
+<input id="address" class="full-width" placeholder="العنوان" required>
+
+<h2>البيانات الجامعية</h2>
+
 <div class="form-row">
   <input id="university" placeholder="الجامعة" required>
   <input id="college" placeholder="الكلية" required>
 </div>
+
 <div class="form-row">
-    <input id="qualification" placeholder="المؤهل الجامعي" required>
+  <input id="qualification" placeholder="المؤهل الجامعي" required>
   <input id="grade" placeholder="التقدير العام" required>
-  </div>
 </div>
-  
-  <div class="jobData">
-  <h3>البيانات الوظيفية</h3>
+
+<h2>البيانات الوظيفية</h2>
+
 <div class="form-row">
-    <input id="workPlace" placeholder="جهة العمل" required>
-    <input id="level" placeholder="المستوى الوظيفي" required>
-    <input
-        type="text"
-        id="hireDate"
-        placeholder="تاريخ التعيين"
-        onfocus="this.type='date'"
-        onblur="if(!this.value)this.type='text'">
+  <input id="workPlace" placeholder="جهة العمل" required>
+  <input id="level" placeholder="المستوى الوظيفي" required>
+  <input type="text" id="hireDate" placeholder="تاريخ التعيين"
+   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
 </div>
+
 <div class="form-row">
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
-  <input id="appliedJob" placeholder="الوظيفة المتقدم لها" required>
+  <input id="appliedJob" placeholder="الوظيفة المتقدم إليها" required>
 </div>
-  </div>
 
-<div class="courses">
-<h3>الدورات التدريبية</h3>
+<h2>الدورات التدريبية</h2>
+
 <div id="coursesContainer"></div>
 
-<button type="button" class="add-course" onclick="addCourse()">
-  + إضافة دورة
-</button>
-</div>
+<button type="button" class="add-course" onclick="addCourse()">+ إضافة دورة</button>
 
-  <div style="margin-top:20px">
-    <label>
-        <input type="checkbox">  أقر بأن جميع البيانات صحيحة وأتحمل المسئولية القانونية <required>
-    </label>
-</div>
-  
+<label style="display:block;margin-top:20px">
+<input type="checkbox" id="confirm" required>
+ أقر بأن جميع البيانات صحيحة وأتحمل كامل المسئولية
+</label>
+
 <button type="submit" class="submit-btn">حفظ البيانات</button>
 
 </form>
 </div>
 
 <script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwEvyZAANv0Tqxy_TaqZBWL7x0rzeCi36R-X_018VcQhA_IXQYTLdolLldFbb0waivv/exec";
 
 function addCourse(){
-  const div = document.createElement("div");
-  div.className = "course-row";
-
-  div.innerHTML = 
+  const div=document.createElement("div");
+  div.className="course-row";
+  div.innerHTML=`
     <div class="course-header">
       <strong>دورة تدريبية</strong>
-      <button type="button" class="remove-course" onclick="this.closest('.course-row').remove()">✖ حذف</button>
+      <button type="button" class="remove-course"
+       onclick="this.closest('.course-row').remove()">حذف</button>
     </div>
-
     <div class="course-line">
       <input placeholder="اسم الدورة">
       <input placeholder="مكان الدورة">
     </div>
-
     <div class="course-line">
-      <input placeholder="المدة">
-      <input type="date">
-    </div>
-  ;
-
+      <input placeholder="مدة الدورة">
+      <input type="text" placeholder="تاريخ الدورة"
+       onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+    </div>`;
   document.getElementById("coursesContainer").appendChild(div);
 }
 
-  const mobile = document.getElementById("mobile").value;
-  if(!/^\d{11}$/.test(mobile)){
+document.getElementById("dataForm").onsubmit=e=>{
+  e.preventDefault();
+
+  if(!/^\d{11}$/.test(mobile.value)){
     alert("رقم الموبايل يجب أن يكون 11 رقم");
     return;
   }
 
   const courses=[];
-  document.querySelectorAll(".course-row").forEach(row=>{
-    const inputs=row.querySelectorAll("input");
+  document.querySelectorAll(".course-row").forEach(r=>{
+    const i=r.querySelectorAll("input");
     courses.push({
-      name:inputs[0].value,
-      place:inputs[1].value,
-      duration:inputs[2].value,
-      date:inputs[3].value
+      name:i[0].value,
+      place:i[1].value,
+      duration:i[2].value,
+      date:i[3].value
     });
   });
 
-  const data={
-    nationalId:nationalId.value,
-    mobile:mobile,
-    fullName:fullName.value,
-    birthDate:birthDate.value,
-    gender:gender.value,
-    workPlace:workPlace.value,
-    currentJob:currentJob.value,
-    hireDate:hireDate.value,
-    university:university.value,
-    college:college.value,
-    qualification:qualification.value,
-    grade:grade.value,
-    level:level.value,
-    appliedJob:appliedJob.value,
-    courses:courses
-  };
-
   fetch(scriptURL,{
     method:"POST",
-    body:JSON.stringify(data)
+    body:JSON.stringify({
+      fullName:fullName.value,
+      nationalId:nationalId.value,
+      mobile:mobile.value,
+      birthDate:birthDate.value,
+      gender:gender.value,
+      address:address.value,
+      university:university.value,
+      college:college.value,
+      qualification:qualification.value,
+      grade:grade.value,
+      workPlace:workPlace.value,
+      level:level.value,
+      hireDate:hireDate.value,
+      currentJob:currentJob.value,
+      appliedJob:appliedJob.value,
+      courses:courses
+    })
   })
   .then(r=>r.text())
   .then(t=>{
     if(t==="EXISTS"){
       alert("الرقم القومي مسجل من قبل");
     }else{
-      document.getElementById("dataForm").reset();
-      document.getElementById("coursesContainer").innerHTML="";
+      dataForm.reset();
+      coursesContainer.innerHTML="";
     }
   });
-});
+};
 </script>
 
 </body>
