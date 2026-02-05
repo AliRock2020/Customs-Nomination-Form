@@ -105,7 +105,21 @@ h2{
 .hidden{
   display:none;
 }
-  
+  .form-title{
+  text-align:center;
+  margin:20px 0 30px;
+  font-size:24px;
+  color:#222;
+  font-weight:bold;
+}
+  .form-title::after{
+  content:"";
+  display:block;
+  width:120px;
+  height:3px;
+  background:#0066cc;
+  margin:10px auto 0;
+}
 </style>
 </head>
 
@@ -117,7 +131,9 @@ h2{
   <img src="logo-right.png">
   <img src="logo-left.png">
 </div>
-
+<h1 class="form-title">
+  استمارة تسجيل بيانات المتقدم لمسابقة الندب رقم ١ لسنة ٢٠٢٦
+</h1>
 <form id="dataForm">
 
 <h2>البيانات الشخصية</h2>
