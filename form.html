@@ -21,11 +21,11 @@ body{
 .logos{
   display:flex;
   justify-content:space-between;
-  margin-bottom:40px;
+  margin-bottom:20px;
 }
 
 .logos img{
-  height:100px;
+  height:70px;
 }
 
 h2{
@@ -212,7 +212,7 @@ function addCourse(){
   const div = document.createElement("div");
   div.className = "course-row";
 
-  div.innerHTML = `
+  div.innerHTML = 
     <div class="course-header">
       <strong>دورة تدريبية</strong>
       <button type="button" class="remove-course" onclick="this.closest('.course-row').remove()">✖ حذف</button>
@@ -227,7 +227,7 @@ function addCourse(){
       <input placeholder="المدة">
       <input type="date">
     </div>
-  `;
+  ;
 
   document.getElementById("coursesContainer").appendChild(div);
 }
