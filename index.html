@@ -13,8 +13,6 @@ body{
   line-height:1.8;
 }
 
-
-
 .header{
   width:100%;
   height:60vh;            /* مرن حسب الشاشة */
@@ -136,7 +134,11 @@ ul{
     padding:10px;
   }
 }
-
+@media (max-width:768px){
+  .header{
+    background-image:url("header-mobile.jpg");
+  }
+}
 @media (max-width: 768px){
 
   .form-row{
@@ -237,6 +239,7 @@ document.getElementById("agree").onchange = function(){
 
 </body>
 </html>
+
 
 
 
