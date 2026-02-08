@@ -236,13 +236,25 @@ h2{
      <option>إمتياز</option>
      <option>جيد جداً</option>
      <option>جيد</option>
+     <option>مقبول</option>
   </select>
 </div>
 
 <h2>البيانات الوظيفية</h2>
 <div class="form-row">
   <input id="workPlace" placeholder="جهة العمل" required>
-  <input id="level" placeholder="المستوى الوظيفي" required>
+   <select id="level" required>
+    <option value="">المستوى الوظيفي</option>
+     <option>للوظائف التخصصية</option>
+     <option value="للوظائف التخصصية">للوظائف التخصصية</option>
+     <option value="للوظائف الكتابية والفنية">للوظائف الكتابية والفنية</option>
+     <option value="للوظائف الحرفية والخدمة المعاونة">للوظائف الحرفية والخدمة المعاونة</option>
+  </select>
+<select id="jobGrade" required>
+    <option value="">الدرجة الوظيفية</option>
+  </select>
+</div>
+  
   <input type="text" id="hireDate" placeholder="تاريخ التعيين"
    onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
 </div>
@@ -301,7 +313,7 @@ h2{
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwt9xne1YRG1u9ZOtlrWrqdKg5wk9jG0nVAEWbCBfr3AMI_cAEMYgns4mW1VSZMptA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby6FdRvv-anJgksKo3BqCuEzLhyq8x233oYQspB3AFCUustBFZ8snyqnG-btJ_-VztS/exec";
 
 function addCourse(){
   const div=document.createElement("div");
@@ -357,6 +369,7 @@ fetch(scriptURL,{
     grade:grade.value,
     workPlace:workPlace.value,
     level:level.value,
+    jobGrade: jobGrade.value,
     hireDate:hireDate.value,
     jobGroupType: jobGroupType.options[jobGroupType.selectedIndex].text,
     jobGroup: jobGroup.value,
@@ -426,6 +439,46 @@ jobGroupType.addEventListener("change", function () {
     jobGroup.appendChild(option);
   });
 });
+
+
+const gradesData = {
+  "للوظائف التخصصية": [
+    "الأولى",
+    "الثانية",
+    "الثالثة"
+  ],
+  "للوظائف الكتابية والفنية": [
+    "الثانية",
+    "الثالثة",
+    "الرابعة"
+  ],
+  "للوظائف الحرفية والخدمة المعاونة": [
+    "الثالثة",
+    "الرابعة",
+    "الخامسة",
+    "السادسة"
+  ]
+};
+
+const levelSelect = document.getElementById("level");
+const jobGradeSelect = document.getElementById("jobGrade");
+
+levelSelect.addEventListener("change", function () {
+  const selectedLevel = this.value;
+
+  // تفريغ الدرجات القديمة
+  jobGradeSelect.innerHTML = `<option value="">الدرجة الوظيفية</option>`;
+
+  if (!selectedLevel) return;
+
+  gradesData[selectedLevel].forEach(grade => {
+    const option = document.createElement("option");
+    option.value = grade;
+    option.textContent = grade;
+    jobGradeSelect.appendChild(option);
+  });
+});
+
 </script>
 
 </body>
