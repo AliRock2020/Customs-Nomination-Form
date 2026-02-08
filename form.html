@@ -243,6 +243,10 @@ h2{
 <h2>البيانات الوظيفية</h2>
 <div class="form-row">
   <input id="workPlace" placeholder="جهة العمل" required>
+  <input type="text" id="hireDate" placeholder="تاريخ التعيين"
+   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
+</div>
+<div class="form-row">
    <select id="level" required>
     <option value="">المستوى الوظيفي</option>
      <option>للوظائف التخصصية</option>
@@ -251,14 +255,11 @@ h2{
      <option value="للوظائف الحرفية والخدمة المعاونة">للوظائف الحرفية والخدمة المعاونة</option>
   </select>
 <select id="jobGrade" required>
+  </div>
     <option value="">الدرجة الوظيفية</option>
   </select>
 </div>
   
-  <input type="text" id="hireDate" placeholder="تاريخ التعيين"
-   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
-</div>
-
   <div class="form-row">
   <select id="jobGroupType" required >
       <option value="">اختر المجموعة النوعية</option>
