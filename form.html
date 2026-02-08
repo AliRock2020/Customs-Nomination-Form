@@ -220,11 +220,9 @@ h2{
      <option>ليسانس حقوق / ليسانس شريعة وقانون</option>
      <option>بكالوريوس التجارة</option>
      <option>مؤهل عالى مناسب </option>
-     <option>مؤهل عالى مناسب</option>
      <option>بكالوريوس الهندسة</option>
      <option>بكالوريوس الهندسة(حاسبات)/بكالوريوس حاسبات ومعلومات</option>
      <option>بكالوريوس علوم</option>
-     <option>مؤهل عالى مناسب</option>
      <option>مؤهل متوسط مناسب لطبيعة العمل</option>
      <option>مؤهل  متوسط</option>
      <option>مؤهل أقل من متوسط</option>
@@ -250,9 +248,27 @@ h2{
    onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
 </div>
 
+  <div class="form-row">
+  <select id="jobGroupType" placeholder="اختر المجموعة النوعية" required >
+    <option value="law">وظائف القانون</option>
+    <option value="finance">التمويل والمحاسبة</option>
+    <option value="hr">التنمية الإدارية</option>
+    <option value="engineering">الهندسة</option>
+    <option value="science">العلوم</option>
+    <option value="clerical">الوظائف الكتابية</option>
+    <option value="transport">الحركة والنقل</option>
+    <option value="services">الخدمات المعاونة</option>
+    <option value="security">الأمن</option>
+  </select>
+
+  <select id="jobGroup" required>
+    <option value="">اختر المجموعة الوظيفية</option>
+  </select>
+</div>
+  
 <div class="form-row">
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
-   <select id="appliedJob" required>
+   <select id="appliedJob"  placeholder="الوظيفة المتقدم إليها" required>
     <option value="">الوظيفة المتقدم إليها</option>
     <option>قانون</option>
     <option>محاسبة / مراجعة / تخصص جمارك</option>
