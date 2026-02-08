@@ -214,19 +214,35 @@ h2{
 
 
 <h2>البيانات الجامعية</h2>
-
 <div class="form-row">
+   <select id="qualification" required>
+    <option value="">المؤهل الجامعي</option>
+     <option>ليسانس حقوق / ليسانس شريعة وقانون</option>
+     <option>بكالوريوس التجارة</option>
+     <option>مؤهل عالى مناسب </option>
+     <option>مؤهل عالى مناسب</option>
+     <option>بكالوريوس الهندسة</option>
+     <option>بكالوريوس الهندسة(حاسبات)/بكالوريوس حاسبات ومعلومات</option>
+     <option>بكالوريوس علوم</option>
+     <option>مؤهل عالى مناسب</option>
+     <option>مؤهل متوسط مناسب لطبيعة العمل</option>
+     <option>مؤهل  متوسط</option>
+     <option>مؤهل أقل من متوسط</option>
+  </select>
   <input id="university" placeholder="الجامعة" required>
-  <input id="college" placeholder="الكلية" required>
 </div>
 
 <div class="form-row">
-  <input id="qualification" placeholder="المؤهل الجامعي" required>
-  <input id="grade" placeholder="التقدير العام" required>
+   <input id="college" placeholder="الكلية" required>
+   <select id="grade" required>
+    <option value="">التقدير العام</option>
+     <option>إمتياز</option>
+     <option>جيد جداً</option>
+     <option>جيد</option>
+  </select>
 </div>
 
 <h2>البيانات الوظيفية</h2>
-
 <div class="form-row">
   <input id="workPlace" placeholder="جهة العمل" required>
   <input id="level" placeholder="المستوى الوظيفي" required>
@@ -236,7 +252,20 @@ h2{
 
 <div class="form-row">
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
-  <input id="appliedJob" placeholder="الوظيفة المتقدم إليها" required>
+   <select id="appliedJob" required>
+    <option value="">الوظيفة المتقدم إليها</option>
+    <option>قانون</option>
+    <option>محاسبة / مراجعة / تخصص جمارك</option>
+     <option>عمليات الموارد البشرية / التطوير المؤسسىى(التنظيم) / إدارة وتنمية المواهب(التدريب) / الأستحقاقات والمزايا / تخطيط التدريب</option>
+     <option>العمل بجمرك مطار القاهرة</option>
+     <option>تنفيذ المنشأت/ صيانة</option>
+     <option>إدارة أجهزة البنية التحتية / إدارة الأجهزة والتشغيل والصيانة / قواعد البيانات</option>
+     <option>أجهزة الفحص بالأشعة</option>
+     <option>أعمال كتابية</option>
+     <option>سائقين</option>
+     <option>عمالة</option>
+     <option>الأمن</option>
+  </select>
 </div>
 
 <h2>الدورات التدريبية</h2>
