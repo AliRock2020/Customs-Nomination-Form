@@ -187,7 +187,7 @@ h2{
   <img src="logo-left.png">
 </div>
 <h1 class="form-title">
-  استمارة تسجيل بيانات المتقدم لمسابقة الندب رقم ١ لسنة ٢٠٢٦
+  إستمارة تسجيل بيانات المتقدمين لمسابقة الندب رقم ١ لسنة ٢٠٢٦
 </h1>
 <form id="dataForm">
 
@@ -217,21 +217,20 @@ h2{
 <div class="form-row">
    <select id="qualification" required>
     <option value="">المؤهل الجامعي</option>
-     <option>ليسانس حقوق / ليسانس شريعة وقانون</option>
+     <option>ليسانس حقوق/ليسانس شريعة وقانون (تخصص قانون)</option>
      <option>بكالوريوس التجارة</option>
-     <option>مؤهل عالى مناسب </option>
-     <option>بكالوريوس الهندسة</option>
+     <option>مؤهل عالى </option>
+     <option>بكالوريوس الهندسة (تخصص: مدنى/عمارة/كهرباء/ميكانيكا)</option>
      <option>بكالوريوس الهندسة(حاسبات)/بكالوريوس حاسبات ومعلومات</option>
-     <option>بكالوريوس علوم</option>
-     <option>مؤهل متوسط مناسب لطبيعة العمل</option>
-     <option>مؤهل  متوسط</option>
+     <option>بكالوريوس علوم (تخصص فيزياء)</option>
+     <option>مؤهل متوسط</option>
      <option>مؤهل أقل من متوسط</option>
   </select>
-  <input id="university" placeholder="الجامعة" required>
+  <input id="university" placeholder="الجامعة/المعهد" required>
 </div>
 
 <div class="form-row">
-   <input id="college" placeholder="الكلية" required>
+   <input id="college" placeholder="الكلية" >
    <select id="grade" required>
     <option value="">التقدير العام</option>
      <option>إمتياز</option>
@@ -249,8 +248,9 @@ h2{
 </div>
 
   <div class="form-row">
-  <select id="jobGroupType" placeholder="اختر المجموعة النوعية" required >
-    <option value="law">وظائف القانون</option>
+  <select id="jobGroupType" required >
+      <option value="">اختر المجموعة النوعية</option>
+    <option value="law">لوظائف القانون</option>
     <option value="finance">التمويل والمحاسبة</option>
     <option value="hr">التنمية الإدارية</option>
     <option value="engineering">الهندسة</option>
@@ -342,28 +342,29 @@ document.getElementById("dataForm").onsubmit=e=>{
       date:i[3].value
     });
   });
-
-  fetch(scriptURL,{
-    method:"POST",
-    body:JSON.stringify({
-      fullName:fullName.value,
-      nationalId:nationalId.value,
-      mobile:mobile.value,
-      birthDate:birthDate.value,
-      gender:gender.value,
-      address:address.value,
-      university:university.value,
-      college:college.value,
-      qualification:qualification.value,
-      grade:grade.value,
-      workPlace:workPlace.value,
-      level:level.value,
-      hireDate:hireDate.value,
-      currentJob:currentJob.value,
-      appliedJob:appliedJob.value,
-      courses:courses
-    })
+fetch(scriptURL,{
+  method:"POST",
+  body:JSON.stringify({
+    fullName:fullName.value,
+    nationalId:nationalId.value,
+    mobile:mobile.value,
+    birthDate:birthDate.value,
+    gender:gender.value,
+    address:address.value,
+    university:university.value,
+    college:college.value,
+    qualification:qualification.value,
+    grade:grade.value,
+    workPlace:workPlace.value,
+    level:level.value,
+    hireDate:hireDate.value,
+    jobGroupType: jobGroupType.value,
+    jobGroup: jobGroup.value,
+    currentJob:currentJob.value,
+    appliedJob:appliedJob.value,
+    courses:courses
   })
+})
   .then(r=>r.text())
   .then(t=>{
   if(t==="EXISTS"){
@@ -374,6 +375,57 @@ document.getElementById("dataForm").onsubmit=e=>{
   }
 });
 };
+  
+const jobGroupsData = {
+  law: [
+    "قانون"
+  ],
+  finance: [
+    "محاسبة",
+    "مراجعة",
+    "تخصص جمارك"
+  ],
+  hr: [
+    "الموارد البشرية",
+    "التنمية الإدارية"
+  ],
+  engineering: [
+    "تنفيذ المنشآت",
+    "صيانة"
+  ],
+  science: [
+    "أجهزة الفحص بالأشعة"
+  ],
+  clerical: [
+    "أعمال كتابية"
+  ],
+  transport: [
+    "سائقين"
+  ],
+  services: [
+    "عمالة"
+  ],
+  security: [
+    "الأمن"
+  ]
+};
+
+const jobGroupType = document.getElementById("jobGroupType");
+const jobGroup = document.getElementById("jobGroup");
+
+jobGroupType.addEventListener("change", function () {
+  jobGroup.innerHTML = '<option value="">اختر المجموعة الوظيفية</option>';
+
+  const selectedType = this.value;
+  if (!jobGroupsData[selectedType]) return;
+
+  jobGroupsData[selectedType].forEach(item => {
+    const option = document.createElement("option");
+    option.value = item;
+    option.textContent = item;
+    jobGroup.appendChild(option);
+  });
+});
 </script>
 
 </body>
