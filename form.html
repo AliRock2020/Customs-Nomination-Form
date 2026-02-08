@@ -250,15 +250,15 @@ h2{
   <div class="form-row">
   <select id="jobGroupType" required >
       <option value="">اختر المجموعة النوعية</option>
-    <option value="law">لوظائف القانون</option>
-    <option value="finance">التمويل والمحاسبة</option>
-    <option value="hr">التنمية الإدارية</option>
-    <option value="engineering">الهندسة</option>
-    <option value="science">العلوم</option>
-    <option value="clerical">الوظائف الكتابية</option>
-    <option value="transport">الحركة والنقل</option>
-    <option value="services">الخدمات المعاونة</option>
-    <option value="security">الأمن</option>
+    <option value="لوظائف القانون">لوظائف القانون</option>
+    <option value="التمويل والمحاسبة">التمويل والمحاسبة</option>
+    <option value="التنمية الإدارية">التنمية الإدارية</option>
+    <option value="الهندسة">الهندسة</option>
+    <option value="العلوم">العلوم</option>
+    <option value="الوظائف الكتابية">الوظائف الكتابية</option>
+    <option value="الحركة والنقل">الحركة والنقل</option>
+    <option value="الخدمات المعاونة">الخدمات المعاونة</option>
+    <option value="الأمن">الأمن</option>
   </select>
 
   <select id="jobGroup" required>
@@ -358,7 +358,7 @@ fetch(scriptURL,{
     workPlace:workPlace.value,
     level:level.value,
     hireDate:hireDate.value,
-    jobGroupType: jobGroupType.value,
+    jobGroupType: jobGroupType.options[jobGroupType.selectedIndex].text,
     jobGroup: jobGroup.value,
     currentJob:currentJob.value,
     appliedJob:appliedJob.value,
