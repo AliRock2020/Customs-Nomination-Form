@@ -136,6 +136,26 @@ h2{
     font-size:18px;
     padding:10px;
   }
+
+  #messageBox{
+  margin-top:15px;
+  padding:12px;
+  border-radius:6px;
+  font-size:15px;
+}
+#messageBox.success{
+  background:#d4edda;
+  color:#155724;
+  border:1px solid #c3e6cb;
+}
+#messageBox.error{
+  background:#f8d7da;
+  color:#721c24;
+  border:1px solid #f5c6cb;
+}
+.hidden{
+  display:none;
+}
 }
 
 
@@ -305,14 +325,15 @@ h2{
 <input type="checkbox" id="confirm" required>
  أقر بأن جميع البيانات صحيحة وأتحمل كامل المسئولية
 </label>
-
+<div id="messageBox" class="hidden"></div>
+  .
 <button type="submit" class="submit-btn">حفظ البيانات</button>
 
 </form>
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycby6FdRvv-anJgksKo3BqCuEzLhyq8x233oYQspB3AFCUustBFZ8snyqnG-btJ_-VztS/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxi59ZO2jaru7jiDWW5WPdK9hHz5NZ0H723mgDmYPZuA_4vtlgP3DgydMhQgSzLx541/exec";
 
 function addCourse(){
   const div=document.createElement("div");
@@ -353,10 +374,19 @@ document.getElementById("dataForm").onsubmit=e=>{
       date:i[3].value
     });
   });
+  
+  const messageBox = document.getElementById("messageBox");
+messageBox.className = "hidden";
+messageBox.innerText = "";
+
+const messageBox = document.getElementById("messageBox");
+messageBox.className = "hidden";
+messageBox.innerText = "";
+
 fetch(scriptURL,{
   method:"POST",
   body:JSON.stringify({
-    fullName:fullName.value,
+   fullName:fullName.value,
     nationalId:nationalId.value,
     mobile:mobile.value,
     birthDate:birthDate.value,
@@ -377,16 +407,35 @@ fetch(scriptURL,{
     courses:courses
   })
 })
-  .then(r=>r.text())
-  .then(t=>{
-  if(t==="EXISTS"){
-    alert("الرقم القومي مسجل من قبل");
-  }else{
-    dataForm.reset();
-    coursesContainer.innerHTML="";
+.then(res => res.text())
+.then(text => {
+
+  if(text === "EXISTS"){
+    messageBox.className = "error";
+    messageBox.innerText = "❌ الرقم القومي مسجل من قبل";
+    messageBox.classList.remove("hidden");
+    return;
   }
+
+  if(text === "OK"){
+    messageBox.className = "success";
+    messageBox.innerText = "✅ تم تسجيل البيانات بنجاح";
+    messageBox.classList.remove("hidden");
+
+    dataForm.reset();
+    coursesContainer.innerHTML = "";
+  }else{
+    messageBox.className = "error";
+    messageBox.innerText = "❌ حدث خطأ أثناء حفظ البيانات";
+    messageBox.classList.remove("hidden");
+  }
+
+})
+.catch(err=>{
+  messageBox.className = "error";
+  messageBox.innerText = "⚠️ تعذر الاتصال بالخادم، حاول مرة أخرى";
+  messageBox.classList.remove("hidden");
 });
-};
   
 const jobGroupsData = {
   "لوظائف القانون": [
