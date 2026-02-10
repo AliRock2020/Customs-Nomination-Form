@@ -16,20 +16,6 @@ body{
   width:95%;
   margin:20px auto;
 }
-.logos{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-}
-.logos img{
-  height:110px;
-}
-.form-title{
-  text-align:center;
-  margin:20px 0 30px;
-  font-size:24px;
-  font-weight:bold;
-}
 h2{
   background:#eee;
   padding:10px;
@@ -44,24 +30,31 @@ h2{
 .form-row select{
   flex:1;
   padding:12px;
+  font-size:14px;
 }
 .course-row{
   border:1px solid #ccc;
   padding:15px;
-  background:#fafafa;
   margin-bottom:15px;
+  background:#fafafa;
 }
 .course-line{
   display:flex;
   gap:15px;
   margin-bottom:10px;
 }
-.course-line input{
-  flex:1;
-  padding:12px;
-}
+.course-line input{flex:1;padding:12px;}
 .add-course{
   padding:10px;
+  border:1px dashed #999;
+  background:#eee;
+  cursor:pointer;
+}
+.remove-course{
+  background:#c0392b;
+  color:#fff;
+  border:none;
+  padding:5px 10px;
   cursor:pointer;
 }
 .submit-btn{
@@ -76,37 +69,76 @@ h2{
   margin-top:15px;
   padding:12px;
   border-radius:6px;
-  display:none;
 }
-#messageBox.success{
-  background:#d4edda;
-  color:#155724;
-}
-#messageBox.error{
-  background:#f8d7da;
-  color:#721c24;
-}
+.success{background:#d4edda;color:#155724}
+.error{background:#f8d7da;color:#721c24}
+.hidden{display:none}
 
 @media(max-width:768px){
-  .form-row,.course-line{flex-direction:column;}
+  .form-row,.course-line{flex-direction:column}
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
-
-<div class="logos">
-  <img src="logo-right.png">
-  <img src="logo-left.png">
-</div>
-
-<h1 class="form-title">إستمارة تسجيل بيانات المتقدمين – مسابقة الندب ٢٠٢٦</h1>
 
 <form id="dataForm">
 
+<!-- ================= البيانات الشخصية ================= -->
+<h2>البيانات الشخصية</h2>
+<div class="form-row">
+  <input id="fullName" placeholder="الاسم بالكامل" required>
+  <input id="nationalId" placeholder="الرقم القومي" maxlength="14" required>
+</div>
+<div class="form-row">
+  <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
+  <input type="text" id="birthDate" placeholder="تاريخ الميلاد"
+   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
+  <select id="gender" required>
+    <option value="">النوع</option>
+    <option>ذكر</option>
+    <option>أنثى</option>
+  </select>
+</div>
+<div class="form-row">
+  <input id="address" placeholder="العنوان" required>
+</div>
+
+<!-- ================= البيانات الدراسية ================= -->
+<h2>البيانات الدراسية</h2>
+<div class="form-row">
+  <select id="qualification" required>
+    <option value="">المؤهل</option>
+    <option>ليسانس حقوق/ليسانس شريعة وقانون (تخصص قانون)</option>
+    <option>بكالوريوس تجارة</option>
+    <option>مؤهل عالى </option>
+    <option>بكالوريوس الهندسة (تخصص: مدنى/عمارة/كهرباء/ميكانيكا)</option>
+    <option>بكالوريوس الهندسة(حاسبات)/بكالوريوس حاسبات ومعلومات</option>
+    <option>بكالوريوس علوم (تخصص فيزياء)</option>
+    <option>مؤهل متوسط</option>
+    <option>مؤهل أقل من متوسط</option>
+  </select>
+  <input id="university" placeholder="الجامعة / المعهد" required>
+</div>
+<div class="form-row">
+  <input id="college" placeholder="الكلية">
+  <select id="grade" required>
+    <option value="">التقدير</option>
+    <option>إمتياز</option>
+    <option>جيد جداً</option>
+    <option>جيد</option>
+    <option>مقبول</option>
+  </select>
+</div>
+
+<!-- ================= البيانات الوظيفية ================= -->
 <h2>البيانات الوظيفية</h2>
+<div class="form-row">
+  <input id="workPlace" placeholder="جهة العمل" required>
+  <input type="text" id="hireDate" placeholder="تاريخ التعيين"
+   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
+</div>
 
 <div class="form-row">
   <select id="level" required>
@@ -123,7 +155,7 @@ h2{
 
 <div class="form-row">
   <select id="jobGroupType" required>
-    <option value="">اختر المجموعة النوعية</option>
+    <option value="">المجموعة النوعية</option>
     <option value="لوظائف القانون">لوظائف القانون</option>
     <option value="التمويل والمحاسبة">التمويل والمحاسبة</option>
     <option value="التنمية الإدارية">التنمية الإدارية</option>
@@ -136,61 +168,124 @@ h2{
   </select>
 
   <select id="jobGroup" required>
-    <option value="">اختر المجموعة الوظيفية</option>
+    <option value="">المجموعة الوظيفية</option>
   </select>
 </div>
 
-<div id="messageBox"></div>
+<div class="form-row">
+  <input id="currentJob" placeholder="الوظيفة الحالية" required>
+<select id="appliedJob"  placeholder="الوظيفة المتقدم إليها" required>
+    <option value="">الوظيفة المتقدم إليها</option>
+    <option>قانون</option>
+    <option>محاسبة/مراجعة/تخصص جمارك</option>
+     <option>الموارد البشرية/التطوير المؤسسىى(التنظيم)/إدارة وتنمية المواهب(التدريب)/الأستحقاقات والمزايا/تخطيط التدريب</option>
+     <option>العمل بجمرك مطار القاهرة</option>
+     <option>تنفيذ المنشأت/صيانة</option>
+     <option>إدارة أجهزة البنية التحتية/إدارة الأجهزة والتشغيل والصيانة/قواعد البيانات</option>
+     <option>أجهزة الفحص بالأشعة</option>
+     <option>أعمال كتابية</option>
+     <option>سائقين</option>
+     <option>عمالة</option>
+     <option>الأمن</option>
+  </select></div>
 
-<button type="submit" class="submit-btn">حفظ البيانات</button>
+<!-- ================= الدورات التدريبية ================= -->
+<h2>الدورات التدريبية</h2>
+<div id="coursesContainer"></div>
+<button type="button" class="add-course" onclick="addCourse()">+ إضافة دورة</button>
+
+<label style="display:block;margin-top:20px">
+<input type="checkbox" required>  أقر بأن جميع البيانات صحيحة وأتحمل كامل المسئولية
+</label>
+
+<div id="messageBox" class="hidden"></div>
+<button class="submit-btn">حفظ البيانات</button>
 
 </form>
 </div>
 
 <script>
-// ================== بيانات المجموعات الوظيفية ==================
-const jobGroupsData = {
-  "لوظائف القانون": ["قانون"],
-  "التمويل والمحاسبة": ["محاسبة","مراجعة","تخصص جمارك"],
-  "التنمية الإدارية": ["الموارد البشرية","التنمية الإدارية"],
-  "الهندسة": ["تنفيذ المنشآت","صيانة"],
-  "العلوم": ["أجهزة الفحص بالأشعة"],
-  "الوظائف الكتابية": ["أعمال كتابية"],
-  "الحركة والنقل": ["سائقين"],
-  "الخدمات المعاونة": ["عمالة"],
-  "الأمن": ["الأمن"]
+const scriptURL = "https://script.google.com/macros/s/AKfycbxi59ZO2jaru7jiDWW5WPdK9hHz5NZ0H723mgDmYPZuA_4vtlgP3DgydMhQgSzLx541/exec";
+/* ================= الدورات ================= */
+function addCourse(){
+  const div=document.createElement("div");
+  div.className="course-row";
+  div.innerHTML=`
+  <div class="course-line">
+    <input placeholder="اسم الدورة">
+    <input placeholder="مكان الدورة">
+  </div>
+  <div class="course-line">
+    <input placeholder="مدة الدورة">
+    <input type="text" placeholder="تاريخ الدورة"
+       onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">  </div>
+  <button type="button" class="remove-course"
+   onclick="this.parentElement.remove()">حذف</button>`;
+  coursesContainer.appendChild(div);
+}
+
+/* ================= المجموعات ================= */
+const jobGroupsData={
+ "لوظائف القانون":["قانون"],
+ "التمويل والمحاسبة":["محاسبة","مراجعة","تخصص جمارك"],
+ "التنمية الإدارية":["موارد بشرية","التنمية الإدارية"],
+ "الهندسة":["تنفيذ المنشآت","صيانة"],
+ "العلوم":["أجهزة الفحص بالأشعة"]
+  "الوظائف الكتابية": [
+    "أعمال كتابية"
+  ],
+  "الحركة والنقل": [
+    "سائقين"
+  ],
+  "الخدمات المعاونة": [
+    "عمالة"
+  ],
+  "الأمن": [
+    "الأمن"
+  ]
+};
+jobGroupType.onchange=function(){
+ jobGroup.innerHTML='<option value="">المجموعة الوظيفية</option>';
+ (jobGroupsData[this.value]||[]).forEach(v=>{
+  jobGroup.innerHTML+=`<option>${v}</option>`;
+ });
 };
 
-const gradesData = {
-  "للوظائف التخصصية": ["الأولى","الثانية","الثالثة"],
-  "للوظائف الكتابية والفنية": ["الثانية","الثالثة","الرابعة"],
-  "للوظائف الحرفية والخدمة المعاونة": ["الثالثة","الرابعة","الخامسة","السادسة"]
+/* ================= الدرجات ================= */
+const gradesData={
+ "للوظائف التخصصية":["الأولى","الثانية","الثالثة"],
+ "للوظائف الكتابية والفنية":["الثانية","الثالثة","الرابعة"],
+ "للوظائف الحرفية والخدمة المعاونة":["الثالثة","الرابعة","الخامسة","السادسة"]
+};
+level.onchange=function(){
+ jobGrade.innerHTML='<option value="">الدرجة الوظيفية</option>';
+ (gradesData[this.value]||[]).forEach(g=>{
+  jobGrade.innerHTML+=`<option>${g}</option>`;
+ });
 };
 
-const jobGroupType = document.getElementById("jobGroupType");
-const jobGroup = document.getElementById("jobGroup");
-const levelSelect = document.getElementById("level");
-const jobGradeSelect = document.getElementById("jobGrade");
-
-// تغيير المجموعة الوظيفية
-jobGroupType.addEventListener("change", ()=>{
-  jobGroup.innerHTML = `<option value="">اختر المجموعة الوظيفية</option>`;
-  const list = jobGroupsData[jobGroupType.value];
-  if(!list) return;
-  list.forEach(v=>{
-    jobGroup.innerHTML += `<option>${v}</option>`;
-  });
-});
-
-// تغيير الدرجة الوظيفية
-levelSelect.addEventListener("change", ()=>{
-  jobGradeSelect.innerHTML = `<option value="">الدرجة الوظيفية</option>`;
-  const list = gradesData[levelSelect.value];
-  if(!list) return;
-  list.forEach(v=>{
-    jobGradeSelect.innerHTML += `<option>${v}</option>`;
-  });
-});
+/* ================= validation ================= */
+  document.getElementById("dataForm").onsubmit=e=>{
+  e.preventDefault();
+  if(!/^\d{11}$/.test(mobile.value)){
+    alert("رقم الموبايل يجب أن يكون 11 رقم");
+    return;
+  }
+    .then(res => res.text())
+.then(text => {
+  if(text === "EXISTS"){
+    messageBox.className = "error";
+    messageBox.innerText = "❌ الرقم القومي مسجل من قبل";
+    messageBox.classList.remove("hidden");
+    return;
+  }
+/* ================= الحفظ ================= */
+dataForm.onsubmit=e=>{
+ e.preventDefault();
+ messageBox.className="success";
+ messageBox.innerText="✅ تم حفظ البيانات بنجاح";
+ messageBox.classList.remove("hidden");
+};
 </script>
 
 </body>
