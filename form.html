@@ -205,22 +205,23 @@ h2{
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxi59ZO2jaru7jiDWW5WPdK9hHz5NZ0H723mgDmYPZuA_4vtlgP3DgydMhQgSzLx541/exec";
+const scriptURL="https://script.google.com/macros/s/AKfycbxi59ZO2jaru7jiDWW5WPdK9hHz5NZ0H723mgDmYPZuA_4vtlgP3DgydMhQgSzLx541/exec";
+
 /* ================= الدورات ================= */
 function addCourse(){
   const div=document.createElement("div");
   div.className="course-row";
   div.innerHTML=`
-  <div class="course-line">
-    <input placeholder="اسم الدورة">
-    <input placeholder="مكان الدورة">
-  </div>
-  <div class="course-line">
-    <input placeholder="مدة الدورة">
-    <input type="text" placeholder="تاريخ الدورة"
-       onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">  </div>
-  <button type="button" class="remove-course"
-   onclick="this.parentElement.remove()">حذف</button>`;
+    <div class="course-line">
+      <input placeholder="اسم الدورة">
+      <input placeholder="مكان الدورة">
+    </div>
+    <div class="course-line">
+      <input placeholder="مدة الدورة">
+      <input type="date">
+    </div>
+    <button type="button" class="remove-course"
+      onclick="this.parentElement.remove()">حذف</button>`;
   coursesContainer.appendChild(div);
 }
 
@@ -230,26 +231,19 @@ const jobGroupsData={
  "التمويل والمحاسبة":["محاسبة","مراجعة","تخصص جمارك"],
  "التنمية الإدارية":["موارد بشرية","التنمية الإدارية"],
  "الهندسة":["تنفيذ المنشآت","صيانة"],
- "العلوم":["أجهزة الفحص بالأشعة"]
-  "الوظائف الكتابية": [
-    "أعمال كتابية"
-  ],
-  "الحركة والنقل": [
-    "سائقين"
-  ],
-  "الخدمات المعاونة": [
-    "عمالة"
-  ],
-  "الأمن": [
-    "الأمن"
-  ]
+ "العلوم":["أجهزة الفحص بالأشعة"],
+ "الوظائف الكتابية":["أعمال كتابية"],
+ "الحركة والنقل":["سائقين"],
+ "الخدمات المعاونة":["عمالة"],
+ "الأمن":["الأمن"]
 };
-jobGroupType.onchange=function(){
+
+jobGroupType.addEventListener("change",()=>{
  jobGroup.innerHTML='<option value="">المجموعة الوظيفية</option>';
- (jobGroupsData[this.value]||[]).forEach(v=>{
-  jobGroup.innerHTML+=`<option>${v}</option>`;
+ (jobGroupsData[jobGroupType.value]||[]).forEach(v=>{
+  jobGroup.innerHTML+=`<option value="${v}">${v}</option>`;
  });
-};
+});
 
 /* ================= الدرجات ================= */
 const gradesData={
@@ -257,35 +251,79 @@ const gradesData={
  "للوظائف الكتابية والفنية":["الثانية","الثالثة","الرابعة"],
  "للوظائف الحرفية والخدمة المعاونة":["الثالثة","الرابعة","الخامسة","السادسة"]
 };
-level.onchange=function(){
- jobGrade.innerHTML='<option value="">الدرجة الوظيفية</option>';
- (gradesData[this.value]||[]).forEach(g=>{
-  jobGrade.innerHTML+=`<option>${g}</option>`;
- });
-};
 
-/* ================= validation ================= */
-  document.getElementById("dataForm").onsubmit=e=>{
-  e.preventDefault();
-  if(!/^\d{11}$/.test(mobile.value)){
-    alert("رقم الموبايل يجب أن يكون 11 رقم");
-    return;
-  }
-    .then(res => res.text())
-.then(text => {
-  if(text === "EXISTS"){
-    messageBox.className = "error";
-    messageBox.innerText = "❌ الرقم القومي مسجل من قبل";
-    messageBox.classList.remove("hidden");
-    return;
-  }
+level.addEventListener("change",()=>{
+ jobGrade.innerHTML='<option value="">الدرجة الوظيفية</option>';
+ (gradesData[level.value]||[]).forEach(g=>{
+  jobGrade.innerHTML+=`<option value="${g}">${g}</option>`;
+ });
+});
+
 /* ================= الحفظ ================= */
-dataForm.onsubmit=e=>{
+dataForm.addEventListener("submit",e=>{
  e.preventDefault();
- messageBox.className="success";
- messageBox.innerText="✅ تم حفظ البيانات بنجاح";
- messageBox.classList.remove("hidden");
-};
+
+ if(!/^\d{11}$/.test(mobile.value)){
+  alert("رقم الموبايل يجب أن يكون 11 رقم");
+  return;
+ }
+
+ const courses=[];
+ document.querySelectorAll(".course-row").forEach(r=>{
+  const i=r.querySelectorAll("input");
+  courses.push({
+   name:i[0].value,
+   place:i[1].value,
+   duration:i[2].value,
+   date:i[3].value
+  });
+ });
+
+ messageBox.className="hidden";
+
+ fetch(scriptURL,{
+  method:"POST",
+  body:JSON.stringify({
+   fullName:fullName.value,
+   nationalId:nationalId.value,
+   mobile:mobile.value,
+   birthDate:birthDate.value,
+   gender:gender.value,
+   address:address.value,
+   qualification:qualification.value,
+   university:university.value,
+   college:college.value,
+   grade:grade.value,
+   workPlace:workPlace.value,
+   hireDate:hireDate.value,
+   level:level.value,
+   jobGrade:jobGrade.value,
+   jobGroupType:jobGroupType.value,
+   jobGroup:jobGroup.value,
+   currentJob:currentJob.value,
+   appliedJob:appliedJob.value,
+   courses:courses
+  })
+ })
+ .then(r=>r.text())
+ .then(t=>{
+  if(t==="EXISTS"){
+   messageBox.className="error";
+   messageBox.innerText="❌ الرقم القومي مسجل من قبل";
+  }else{
+   messageBox.className="success";
+   messageBox.innerText="✅ تم حفظ البيانات بنجاح";
+   dataForm.reset();
+   coursesContainer.innerHTML="";
+  }
+  messageBox.classList.remove("hidden");
+ })
+ .catch(()=>{
+  messageBox.className="error";
+  messageBox.innerText="⚠️ حدث خطأ أثناء الحفظ";
+  messageBox.classList.remove("hidden");
+ });
+});
 </script>
 
 </body>
