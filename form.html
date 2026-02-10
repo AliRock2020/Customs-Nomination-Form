@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تسجيل بيانات المتقدم</title>
 
 <style>
@@ -13,94 +11,60 @@ body{
   font-family:Tahoma, Arial;
   background:#f4f6f8;
 }
-
 .container{
   max-width:1100px;
   width:95%;
   margin:20px auto;
 }
-
 .logos{
   display:flex;
   justify-content:center;
-  align-items:center;
   gap:20px;
-  flex-wrap:wrap;
 }
-
 .logos img{
   height:110px;
-background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
 }
-
+.form-title{
+  text-align:center;
+  margin:20px 0 30px;
+  font-size:24px;
+  font-weight:bold;
+}
 h2{
   background:#eee;
   padding:10px;
   margin-top:30px;
 }
-
 .form-row{
   display:flex;
   gap:15px;
   margin-bottom:15px;
 }
-
 .form-row input,
 .form-row select{
   flex:1;
   padding:12px;
-  font-size:14px;
 }
-
-.full-width{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-}
-
 .course-row{
   border:1px solid #ccc;
   padding:15px;
-  margin-bottom:15px;
   background:#fafafa;
+  margin-bottom:15px;
 }
-
-.course-header{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:10px;
-}
-
 .course-line{
   display:flex;
   gap:15px;
   margin-bottom:10px;
 }
-
 .course-line input{
   flex:1;
   padding:12px;
 }
-
-.remove-course{
-  background:#c0392b;
-  color:#fff;
-  border:none;
-  padding:5px 10px;
-  cursor:pointer;
-}
-
 .add-course{
-  background:#eee;
-  border:1px dashed #999;
   padding:10px;
   cursor:pointer;
 }
-
 .submit-btn{
-  margin-top:20px;
   width:100%;
   padding:15px;
   background:#0066cc;
@@ -108,93 +72,24 @@ h2{
   border:none;
   font-size:16px;
 }
-
-.hidden{
-  display:none;
-}
-  .form-title{
-  text-align:center;
-  margin:20px 0 30px;
-  font-size:24px;
-  color:#222;
-  font-weight:bold;
-}
-  .form-title::after{
-  content:"";
-  display:block;
-  width:120px;
-  height:3px;
-  background:#0066cc;
-  margin:10px auto 0;
-}
-@media (max-width: 768px){
-  .header{
-    height:180px;
-  }
-
-  .header h1{
-    font-size:18px;
-    padding:10px;
-  }
-
-  #messageBox{
+#messageBox{
   margin-top:15px;
   padding:12px;
   border-radius:6px;
-  font-size:15px;
+  display:none;
 }
 #messageBox.success{
   background:#d4edda;
   color:#155724;
-  border:1px solid #c3e6cb;
 }
 #messageBox.error{
   background:#f8d7da;
   color:#721c24;
-  border:1px solid #f5c6cb;
-}
-.hidden{
-  display:none;
-}
 }
 
-
-@media (max-width: 768px){
-
-  .form-row{
-    flex-direction:column;
-  }
-
-  .course-line{
-    flex-direction:column;
-  }
-
-    .logos{
-    flex-direction:row;
-    flex-wrap:nowrap;
-    gap:10px;
-  }
-
-  .logos img{
-    height:70px;
-    max-width:45%;
-    object-fit:contain;
-  }
-
-  .form-title{
-    font-size:20px;
-    margin-bottom:20px;
-  }
-
-  h2{
-    font-size:18px;
-  }
-
-  .submit-btn{
-    font-size:15px;
-  }
+@media(max-width:768px){
+  .form-row,.course-line{flex-direction:column;}
 }
-
 </style>
 </head>
 
@@ -206,82 +101,29 @@ h2{
   <img src="logo-right.png">
   <img src="logo-left.png">
 </div>
-<h1 class="form-title">
-  إستمارة تسجيل بيانات المتقدمين لمسابقة الندب رقم ١ لسنة ٢٠٢٦
-</h1>
+
+<h1 class="form-title">إستمارة تسجيل بيانات المتقدمين – مسابقة الندب ٢٠٢٦</h1>
+
 <form id="dataForm">
 
-<h2>البيانات الشخصية</h2>
-
-<div class="form-row">
-  <input id="fullName" placeholder="الاسم بالكامل" required>
-  <input id="nationalId" placeholder="الرقم القومي" maxlength="14" required>
-</div>
-
-<div class="form-row">
-  <input id="mobile" placeholder="رقم الموبايل" maxlength="11" required>
-  <input type="text" id="birthDate" placeholder="تاريخ الميلاد"
-   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
-  <select id="gender" required>
-    <option value="">النوع</option>
-    <option>ذكر</option>
-    <option>أنثى</option>
-  </select>
-</div>
-<div class="form-row">
-  <input id="address"  placeholder="العنوان" required>
-</div>
-
-
-<h2>البيانات الجامعية</h2>
-<div class="form-row">
-   <select id="qualification" required>
-    <option value="">المؤهل الجامعي</option>
-     <option>ليسانس حقوق/ليسانس شريعة وقانون (تخصص قانون)</option>
-     <option>بكالوريوس التجارة</option>
-     <option>مؤهل عالى </option>
-     <option>بكالوريوس الهندسة (تخصص: مدنى/عمارة/كهرباء/ميكانيكا)</option>
-     <option>بكالوريوس الهندسة(حاسبات)/بكالوريوس حاسبات ومعلومات</option>
-     <option>بكالوريوس علوم (تخصص فيزياء)</option>
-     <option>مؤهل متوسط</option>
-     <option>مؤهل أقل من متوسط</option>
-  </select>
-  <input id="university" placeholder="الجامعة/المعهد" required>
-</div>
-
-<div class="form-row">
-   <input id="college" placeholder="الكلية" >
-   <select id="grade" required>
-    <option value="">التقدير العام</option>
-     <option>إمتياز</option>
-     <option>جيد جداً</option>
-     <option>جيد</option>
-     <option>مقبول</option>
-  </select>
-</div>
-
 <h2>البيانات الوظيفية</h2>
+
 <div class="form-row">
-  <input id="workPlace" placeholder="جهة العمل" required>
-  <input type="text" id="hireDate" placeholder="تاريخ التعيين"
-   onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
-</div>
-<div class="form-row">
-   <select id="level" required>
+  <select id="level" required>
     <option value="">المستوى الوظيفي</option>
-     <option value="للوظائف التخصصية">للوظائف التخصصية</option>
-     <option value="للوظائف الكتابية والفنية">للوظائف الكتابية والفنية</option>
-     <option value="للوظائف الحرفية والخدمة المعاونة">للوظائف الحرفية والخدمة المعاونة</option>
+    <option value="للوظائف التخصصية">للوظائف التخصصية</option>
+    <option value="للوظائف الكتابية والفنية">للوظائف الكتابية والفنية</option>
+    <option value="للوظائف الحرفية والخدمة المعاونة">للوظائف الحرفية والخدمة المعاونة</option>
   </select>
-<select id="jobGrade" required>
-  </div>
+
+  <select id="jobGrade" required>
     <option value="">الدرجة الوظيفية</option>
   </select>
 </div>
-  
-  <div class="form-row">
-  <select id="jobGroupType" required >
-      <option value="">اختر المجموعة النوعية</option>
+
+<div class="form-row">
+  <select id="jobGroupType" required>
+    <option value="">اختر المجموعة النوعية</option>
     <option value="لوظائف القانون">لوظائف القانون</option>
     <option value="التمويل والمحاسبة">التمويل والمحاسبة</option>
     <option value="التنمية الإدارية">التنمية الإدارية</option>
@@ -297,236 +139,58 @@ h2{
     <option value="">اختر المجموعة الوظيفية</option>
   </select>
 </div>
-  
-<div class="form-row">
-  <input id="currentJob" placeholder="الوظيفة الحالية" required>
-   <select id="appliedJob"  placeholder="الوظيفة المتقدم إليها" required>
-    <option value="">الوظيفة المتقدم إليها</option>
-    <option>قانون</option>
-    <option>محاسبة / مراجعة / تخصص جمارك</option>
-     <option>الموارد البشرية/التطوير المؤسسىى(التنظيم)/إدارة وتنمية المواهب(التدريب)/الأستحقاقات والمزايا/تخطيط التدريب</option>
-     <option>العمل بجمرك مطار القاهرة</option>
-     <option>تنفيذ المنشأت/ صيانة</option>
-     <option>إدارة أجهزة البنية التحتية / إدارة الأجهزة والتشغيل والصيانة / قواعد البيانات</option>
-     <option>أجهزة الفحص بالأشعة</option>
-     <option>أعمال كتابية</option>
-     <option>سائقين</option>
-     <option>عمالة</option>
-     <option>الأمن</option>
-  </select>
-</div>
-<h2>الدورات التدريبية</h2>
 
-<div id="coursesContainer"></div>
+<div id="messageBox"></div>
 
-<button type="button" class="add-course" onclick="addCourse()">+ إضافة دورة</button>
-
-<label style="display:block;margin-top:20px">
-<input type="checkbox" id="confirm" required>
- أقر بأن جميع البيانات صحيحة وأتحمل كامل المسئولية
-</label>
-<div id="messageBox" class="hidden"></div>
-  .
 <button type="submit" class="submit-btn">حفظ البيانات</button>
 
 </form>
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxi59ZO2jaru7jiDWW5WPdK9hHz5NZ0H723mgDmYPZuA_4vtlgP3DgydMhQgSzLx541/exec";
-
-function addCourse(){
-  const div=document.createElement("div");
-  div.className="course-row";
-  div.innerHTML=`
-    <div class="course-header">
-      <strong>دورة تدريبية</strong>
-      <button type="button" class="remove-course"
-       onclick="this.closest('.course-row').remove()">حذف</button>
-    </div>
-    <div class="course-line">
-      <input placeholder="اسم الدورة">
-      <input placeholder="مكان الدورة">
-    </div>
-    <div class="course-line">
-      <input placeholder="مدة الدورة">
-      <input type="text" placeholder="تاريخ الدورة"
-       onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
-    </div>`;
-  document.getElementById("coursesContainer").appendChild(div);
-}
-  
-document.getElementById("dataForm").onsubmit=e=>{
-  e.preventDefault();
-
-  if(!/^\d{11}$/.test(mobile.value)){
-    alert("رقم الموبايل يجب أن يكون 11 رقم");
-    return;
-  }
-
-  const courses=[];
-  document.querySelectorAll(".course-row").forEach(r=>{
-    const i=r.querySelectorAll("input");
-    courses.push({
-      name:i[0].value,
-      place:i[1].value,
-      duration:i[2].value,
-      date:i[3].value
-    });
-  });
-  
-  const messageBox = document.getElementById("messageBox");
-messageBox.className = "hidden";
-messageBox.innerText = "";
-
-const messageBox = document.getElementById("messageBox");
-messageBox.className = "hidden";
-messageBox.innerText = "";
-
-fetch(scriptURL,{
-  method:"POST",
-  body:JSON.stringify({
-   fullName:fullName.value,
-    nationalId:nationalId.value,
-    mobile:mobile.value,
-    birthDate:birthDate.value,
-    gender:gender.value,
-    address:address.value,
-    university:university.value,
-    college:college.value,
-    qualification:qualification.value,
-    grade:grade.value,
-    workPlace:workPlace.value,
-    level:level.value,
-    jobGrade: jobGrade.value,
-    hireDate:hireDate.value,
-    jobGroupType: jobGroupType.options[jobGroupType.selectedIndex].text,
-    jobGroup: jobGroup.value,
-    currentJob:currentJob.value,
-    appliedJob:appliedJob.value,
-    courses:courses
-  })
-})
-.then(res => res.text())
-.then(text => {
-
-  if(text === "EXISTS"){
-    messageBox.className = "error";
-    messageBox.innerText = "❌ الرقم القومي مسجل من قبل";
-    messageBox.classList.remove("hidden");
-    return;
-  }
-
-  if(text === "OK"){
-    messageBox.className = "success";
-    messageBox.innerText = "✅ تم تسجيل البيانات بنجاح";
-    messageBox.classList.remove("hidden");
-
-    dataForm.reset();
-    coursesContainer.innerHTML = "";
-  }else{
-    messageBox.className = "error";
-    messageBox.innerText = "❌ حدث خطأ أثناء حفظ البيانات";
-    messageBox.classList.remove("hidden");
-  }
-
-})
-.catch(err=>{
-  messageBox.className = "error";
-  messageBox.innerText = "⚠️ تعذر الاتصال بالخادم، حاول مرة أخرى";
-  messageBox.classList.remove("hidden");
-});
-  
+// ================== بيانات المجموعات الوظيفية ==================
 const jobGroupsData = {
-  "لوظائف القانون": [
-    "قانون"
-  ],
-  "التمويل والمحاسبة": [
-    "محاسبة",
-    "مراجعة",
-    "تخصص جمارك"
-  ],
-  "التنمية الإدارية": [
-    "الموارد البشرية",
-    "التنمية الإدارية"
-  ],
-  "الهندسة": [
-    "تنفيذ المنشآت",
-    "صيانة"
-  ],
-  "العلوم": [
-    "أجهزة الفحص بالأشعة"
-  ],
-  "الوظائف الكتابية": [
-    "أعمال كتابية"
-  ],
-  "الحركة والنقل": [
-    "سائقين"
-  ],
-  "الخدمات المعاونة": [
-    "عمالة"
-  ],
-  "الأمن": [
-    "الأمن"
-  ]
+  "لوظائف القانون": ["قانون"],
+  "التمويل والمحاسبة": ["محاسبة","مراجعة","تخصص جمارك"],
+  "التنمية الإدارية": ["الموارد البشرية","التنمية الإدارية"],
+  "الهندسة": ["تنفيذ المنشآت","صيانة"],
+  "العلوم": ["أجهزة الفحص بالأشعة"],
+  "الوظائف الكتابية": ["أعمال كتابية"],
+  "الحركة والنقل": ["سائقين"],
+  "الخدمات المعاونة": ["عمالة"],
+  "الأمن": ["الأمن"]
+};
+
+const gradesData = {
+  "للوظائف التخصصية": ["الأولى","الثانية","الثالثة"],
+  "للوظائف الكتابية والفنية": ["الثانية","الثالثة","الرابعة"],
+  "للوظائف الحرفية والخدمة المعاونة": ["الثالثة","الرابعة","الخامسة","السادسة"]
 };
 
 const jobGroupType = document.getElementById("jobGroupType");
 const jobGroup = document.getElementById("jobGroup");
-
-jobGroupType.addEventListener("change", function () {
-  jobGroup.innerHTML = '<option value="">اختر المجموعة الوظيفية</option>';
-
-  const selectedType = this.value;
-  if (!jobGroupsData[selectedType]) return;
-
-  jobGroupsData[selectedType].forEach(item => {
-    const option = document.createElement("option");
-    option.value = item;
-    option.textContent = item;
-    jobGroup.appendChild(option);
-  });
-});
-
-
-const gradesData = {
-  "للوظائف التخصصية": [
-    "الأولى",
-    "الثانية",
-    "الثالثة"
-  ],
-  "للوظائف الكتابية والفنية": [
-    "الثانية",
-    "الثالثة",
-    "الرابعة"
-  ],
-  "للوظائف الحرفية والخدمة المعاونة": [
-    "الثالثة",
-    "الرابعة",
-    "الخامسة",
-    "السادسة"
-  ]
-};
-
 const levelSelect = document.getElementById("level");
 const jobGradeSelect = document.getElementById("jobGrade");
 
-levelSelect.addEventListener("change", function () {
-  const selectedLevel = this.value;
-
-  // تفريغ الدرجات القديمة
-  jobGradeSelect.innerHTML = `<option value="">الدرجة الوظيفية</option>`;
-
-  if (!selectedLevel) return;
-
-  gradesData[selectedLevel].forEach(grade => {
-    const option = document.createElement("option");
-    option.value = grade;
-    option.textContent = grade;
-    jobGradeSelect.appendChild(option);
+// تغيير المجموعة الوظيفية
+jobGroupType.addEventListener("change", ()=>{
+  jobGroup.innerHTML = `<option value="">اختر المجموعة الوظيفية</option>`;
+  const list = jobGroupsData[jobGroupType.value];
+  if(!list) return;
+  list.forEach(v=>{
+    jobGroup.innerHTML += `<option>${v}</option>`;
   });
 });
 
+// تغيير الدرجة الوظيفية
+levelSelect.addEventListener("change", ()=>{
+  jobGradeSelect.innerHTML = `<option value="">الدرجة الوظيفية</option>`;
+  const list = gradesData[levelSelect.value];
+  if(!list) return;
+  list.forEach(v=>{
+    jobGradeSelect.innerHTML += `<option>${v}</option>`;
+  });
+});
 </script>
 
 </body>
