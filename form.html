@@ -237,6 +237,18 @@ h2{
 
 <div class="form-row">
   <input id="currentJob" placeholder="الوظيفة الحالية" required>
+   <select id="area" required>
+    <option value="">المنطقة المطلوب الندب اليها</option>
+    <option>القاهرة</option>
+     <option>"الإسكندرية والمنطقة الغربية</option>
+     <option>بورسعيد والاسماعلية</option>
+     <option>سفاجا</option>
+     <option>الغردقة</option>
+     <option>دمياط</option>
+     <option>السويس</option>
+     <option>سيناء</option>
+     <option>أسوان</option>
+  </select>
 <select id="appliedJob"  placeholder="الوظيفة المتقدم إليها" required>
     <option value="">الوظيفة المتقدم إليها</option>
     <option>قانون</option>
@@ -268,7 +280,7 @@ h2{
 </div>
 
 <script>
-const scriptURL="https://script.google.com/macros/s/AKfycbxIqm8szUYq-M6SZI-AbwU7tfJTOwympIm-cjBk0RzthOIatl4hNSHo5-_twDKh1Gp7Rg/exec";
+const scriptURL="https://script.google.com/macros/s/AKfycbzNq4fzPCeSrETVS7Yo9AS-_oxr3Jk95LIdTvEVnhyQrQVz96NR6GqtC3e6XTSxW7gr1A/exec";
 
 /* ================= الدورات ================= */
 function addCourse(){
@@ -364,6 +376,7 @@ dataForm.addEventListener("submit",e=>{
    jobGroupType:jobGroupType.value,
    jobGroup:jobGroup.value,
    currentJob:currentJob.value,
+   area:area.value,
    appliedJob:appliedJob.value,
    courses:courses
   })
